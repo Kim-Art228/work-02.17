@@ -1,0 +1,78 @@
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 6: Web Storage API</title>
+    <!-- apply saved theme before CSS to prevent flicker -->
+    <script>
+        const _savedTheme = localStorage.getItem('theme');
+        if (_savedTheme === 'dark') document.documentElement.classList.add('dark');
+    </script>
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --card-bg: white;
+            --text-color: #000;
+            --button-bg: #007bff;
+            --button-color: #fff;
+            --border-color: #ddd;
+            --item-bg: #f9f9f9;
+            --item-border: #007bff;
+            --status-color: #666;
+        }
+        html.dark {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #eee;
+            --button-bg: #444;
+            --button-color: #fff;
+            --border-color: #555;
+            --item-bg: #282828;
+            --item-border: #888;
+            --status-color: #bbb;
+        }
+        body { font-family: sans-serif; background: var(--bg-color); color: var(--text-color); display: flex; justify-content: center; padding: 40px; transition: background-color 0.4s ease, color 0.4s ease;}
+        .app-card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 400px; }
+        .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
+        input { flex: 1; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); color: var(--text-color); }
+        button { padding: 10px 15px; cursor: pointer; background: var(--button-bg); color: var(--button-color); border: none; border-radius: 6px; }
+        ul { list-style: none; padding: 0; }
+        li { background: var(--item-bg); margin-bottom: 8px; padding: 10px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid var(--item-border); }
+        .button-group { display: flex; gap: 5px; }
+        .done-btn { background: #2857a7; font-size: 12px; padding: 5px 10px; margin-right: 5px; }
+        .delete-btn { background: #ff4d4d; font-size: 12px; padding: 5px 10px; }
+        .storage-info { font-size: 12px; color: var(--status-color); margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 10px; }
+        .completed { text-decoration: line-through; color: gray; }
+    </style>
+</head>
+<body>
+
+    <div class="app-card">
+        <h2>My Persist List 📝</h2>
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="Что нужно сделать?">
+            <button onclick="addTask()">Добавить</button>
+        </div>
+        <button id="themeToggle" style="background:#28a745; width:100%; margin-top:10px;">Сменить тему</button>
+        
+        <ul id="taskList"></ul>
+
+        <div id="stats" class="storage-info">
+            Всего задач: <span id="totalCount">0</span>, выполнено: <span id="doneCount">0</span>
+        </div>
+        <div id="lastVisitDisplay" class="storage-info">
+            Последнее посещение: <span id="lastVisit">—</span>
+        </div>
+        <div class="storage-info">
+            Статус хранилища: <span id="storageStatus">Пусто</span>
+        </div>
+        
+        <button onclick="clearStorage()" style="background: #6c757d; width: 100%; margin-top: 10px;">Очистить всё</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
