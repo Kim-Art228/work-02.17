@@ -1,0 +1,178 @@
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 5: Финальный сетевой тренажер</title>
+    <style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f7f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 900px;
+}
+
+/* ===== ФОРМА ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input, textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* ===== КНОПКИ ===== */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+/* ===== ПОИСК ===== */
+#searchInput {
+    margin-bottom: 20px;
+}
+
+/* ===== ЛОАДЕР ===== */
+#loader {
+    display: none;
+    margin: 15px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* ===== КОНТЕЙНЕР ПОСТОВ ===== */
+#postsContainer {
+    display: grid;
+    gap: 15px;
+}
+
+/* ===== КАРТОЧКА ПОСТА ===== */
+.post-item {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.post-item h4 {
+    margin: 0 0 10px 0;
+    text-transform: capitalize;
+}
+
+.post-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* ===== КОММЕНТАРИИ ===== */
+.comments {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    display: none;
+}
+
+.comment-item {
+    background: #f8f9fa;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.comments.visible {
+    display: block;
+}
+
+/* ===== ОШИБКА ===== */
+.error-message {
+    color: #dc3545;
+    background: #f8d7da;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #f5c6cb;
+    margin: 10px 0;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- Форма создания поста -->
+<form id="createPostForm">
+    <input type="text" id="postTitle" placeholder="post title" required>
+    <textarea id="postBody" placeholder="post body" required></textarea>
+    <button type="submit">post</button>
+</form>
+
+  <!-- Поиск -->
+  <input type="text" id="searchInput" placeholder="searching...">
+
+  <!-- Лоадер -->
+  <div id="loader"></div>
+
+  <!-- Контейнер постов -->
+  <div id="postsContainer"></div>
+
+  <div class="comments"></div>
+</div>
+
+    <div class="logs" id="consoleLogs">> system launched...<br></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
